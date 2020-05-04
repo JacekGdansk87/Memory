@@ -1,0 +1,40 @@
+
+body{
+    background-color: rgb(50, 66, 77);
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: roboto;
+    color:black;
+}
+
+.container{
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 125px);
+    grid-template-rows: repeat(2, 170px);
+    grid-gap: 3%; 
+}
+
+.card{
+    display: grid;
+    background-image: url(img/ReverseCard1.png);
+    background-position: center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+.card:hover{
+    opacity: 1;
+}
+
+.cardVisible{
+    border-radius: 10%;
+    border: 5px solid white;;
+    opacity: 1;
+}
