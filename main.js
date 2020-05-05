@@ -1,7 +1,7 @@
 let oneVisible = false;
 let turnCounter = 0;
 let imageVisible;
-let lock = false;
+let lock = false;    
 
 
 function NewGame(){
@@ -24,57 +24,61 @@ function NewGame(){
             choosenCard = document.getElementById(id);
             choosenCard.addEventListener("click", function() {revealCard(id, tabImg[i])});
     }
-
 }
 
+//A mechanism of checking, showing, removig and hiding Cards
 function revealCard(id, imgVis){
-
+    
     choosenCard = document.getElementById(id);
-    choosenCard.style.backgroundImage="url('img/" + imgVis + "')";
-    choosenCard.classList.add("cardVisible");
-    //choosenCard.classList.remove("card");
+    var opacity = window.getComputedStyle(choosenCard).getPropertyValue("opacity");   
+    
+    if(opacity != 0 && lock == false){
 
-
-    if(oneVisible == false){
-        choosenCard = document.getElementById(id);
+        lock = true;
         choosenCard.style.backgroundImage="url('img/" + imgVis + "')";
         choosenCard.classList.add("cardVisible");
+        
 
-        imageVisible = imgVis;
-        choosenCardFirst = choosenCard;
-        oneVisible = true;
-    }else{
-        choosenCard = document.getElementById(id);
-        choosenCard.style.backgroundImage="url('img/" + imgVis + "')";
-        choosenCard.classList.add("cardVisible");
+        if(oneVisible == false){  
+            console.log(id);
+            choosenCard = document.getElementById(id);
+            choosenCard.style.backgroundImage="url('img/" + imgVis + "')";
+            choosenCard.classList.add("cardVisible");
 
-        ++turnCounter;
-        oneVisible = false;
+            imageVisible = imgVis;
+            choosenCardFirst = choosenCard;
+            oneVisible = true;
+            lock = false;
 
-            if(imageVisible == imgVis){
-                setTimeout(function() {
-                choosenCard.classList.remove("card");
-                choosenCard.style.backgroundImage="none";
-                choosenCardFirst.classList.remove("card");
-                choosenCardFirst.style.backgroundImage="none";
-            }, 750);
+        }else{
+            choosenCardSecond = document.getElementById(id);
+            choosenCardSecond.style.backgroundImage="url('img/" + imgVis + "')";
+            choosenCardSecond.classList.add("cardVisible");
+            ++turnCounter;
 
-            }else{
-                setTimeout(function() {
-                choosenCard.style.backgroundImage="url(img/ReverseCard1.png)";
-                choosenCard.classList.remove("cardVisible");
-                choosenCardFirst.style.backgroundImage="url(img/ReverseCard1.png)";
-                choosenCardFirst.classList.remove("cardVisible");
-                }, 1000);
+                if(imageVisible == imgVis){
+                    setTimeout(function() {restore2Cards(choosenCardSecond)}, 750);
+                }else{
+                    setTimeout(function() { hide2Cards(choosenCardSecond) }, 1000);
+                }
+                oneVisible = false;
             }
     }
-    console.log(imageVisible)
-    console.log(imgVis);
-
-    //id.classList.add("card1");
 }
 
-//let pictureName = "url('img/"+ j +".jpg')";
-//document.getElementById(tab[i]).style.backgroundImage=pictureName;
+function hide2Cards(choosenSecond) {
+    choosenCardFirst.style.backgroundImage="url(img/ReverseCard1.png)";
+    choosenCardFirst.classList.remove("cardVisible");
+    choosenCardSecond.style.backgroundImage="url(img/ReverseCard1.png)";
+    choosenCardSecond.classList.remove("cardVisible");
+    lock = false;
+}
+
+function restore2Cards(choosenSecond) {
+    choosenCardFirst.style.opacity='0';
+    choosenCardSecond.style.opacity='0';
+    lock = false;
+}
+
 
 NewGame();
