@@ -1,13 +1,29 @@
 
 body{
     background-color: rgb(50, 66, 77);
-    display: flex;
+    display: grid;
     height: 100%;
     width: 100%;
-    align-items: center;
+    margin: 0;
+    padding: 0;
     justify-content: center;
     font-family: roboto;
-    color:black;
+    color:white;
+}
+
+.title{
+    display: grid;
+    grid-template-columns:1fr;
+    grid-row: 1fr;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.section{
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-row: 1fr;
 }
 
 .container{

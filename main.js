@@ -1,12 +1,18 @@
 let oneVisible = false;
 let turnCounter = 0;
 let imageVisible;
-let lock = false;    
+let lock = false;   
+let checkId; 
+let size;
 
 
 function NewGame(){
     const tab = [];
     const tabImg = []
+
+
+
+
     //shuffle card 
     while(tab.length !== 8){
         let img = Math.floor(Math.random()*8+1);
@@ -32,8 +38,9 @@ function revealCard(id, imgVis){
     choosenCard = document.getElementById(id);
     var opacity = window.getComputedStyle(choosenCard).getPropertyValue("opacity");   
     
-    if(opacity != 0 && lock == false){
-
+    if(opacity != 0 && lock == false && id != checkId){       
+        checkId = id;
+        opacity = 0;
         lock = true;
         choosenCard.style.backgroundImage="url('img/" + imgVis + "')";
         choosenCard.classList.add("cardVisible");
@@ -54,7 +61,9 @@ function revealCard(id, imgVis){
             choosenCardSecond = document.getElementById(id);
             choosenCardSecond.style.backgroundImage="url('img/" + imgVis + "')";
             choosenCardSecond.classList.add("cardVisible");
+
             ++turnCounter;
+            document.querySelector('.score>h2').innerHTML='Score: '+ turnCounter;
 
                 if(imageVisible == imgVis){
                     setTimeout(function() {restore2Cards(choosenCardSecond)}, 750);
