@@ -1,48 +1,120 @@
-
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
     background-color: rgb(50, 66, 77);
     display: grid;
     height: 100%;
     width: 100%;
-    margin: 0;
+    margin-top: 10px;
     padding: 0;
     justify-content: center;
     font-family: roboto;
     color:white;
+    font-size: 1rem;
+}
+
+h3{
+    color: #2cbd19;
+    text-align: center;
 }
 
 .title{
-    display: grid;
-    grid-template-columns:1fr;
-    grid-row: 1fr;
-    text-align: center;
     margin: 0;
     padding: 0;
 }
 
 .section{
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr 1.5fr ;
     grid-row: 1fr;
+    grid-gap: 5%;
+    grid-auto-flow: column;
+    margin-bottom: 10%;
+}
+
+button{
+    display: grid;
+    background-color:#babeb8;
+	border-radius:10px;
+    display:inline-block;
+    margin-left: 10px;
+    border:2px solid #807f7f;
+	cursor:pointer;
+	color:#ffffff;
+    font-size:10px;
+    font-weight:bold;
+    padding:4px 4px;
+	text-decoration:none;
+}
+
+.on{
+    background-color:#128a02;
+	border-radius:10px;
+	border:2px solid #3b6e22;
+	display:inline-block;
+	color:#ffffff;
+	font-size:10px;
+	font-weight:bold;
+	padding:4px 4px;
+	text-decoration:none;
+}
+
+
+
+.off:hover{
+    background: #4ffa38;
+    border:2px solid #2cbd19;
+    box-shadow: 0 0 5px   #2cbd19,
+                0 0 25px  #2cbd19,
+                0 0 50px  #2cbd19,
+}
+
+.startImage{
+    position: absolute;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-image: url(img/Start.jpeg);
+    background-position: center;
+    background-size: cover;
+    border: 6px solid white;;
+    border-radius: 15%;
+    animation-timing-function: ease;
+    animation: cat 5s infinite;
 }
 
 .container{
+    display: grid;
     text-align: center;
 }
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(4, 125px);
-    grid-template-rows: repeat(2, 170px);
-    grid-gap: 3%; 
+    grid-template-columns: repeat(6, 70px);
+    grid-template-rows: repeat(3, 100px);
+    grid-gap: 1%; 
+    opacity:0;
 }
 
 .card{
     display: grid;
+    position: relative;
     background-image: url(img/ReverseCard1.png);
     background-position: center;
     background-size: cover;
+    border: 6px solid white;;
+    border-radius: 15%;
     opacity: 0.8;
+    transform: perspective(900px) rotateY(0deg);
+    transition: all 500ms;
 }
 
 .card:hover{
@@ -50,7 +122,48 @@ body{
 }
 
 .cardVisible{
-    border-radius: 10%;
-    border: 5px solid white;;
     opacity: 1;
+    transform: perspective(900px) rotateY(-180deg);
+}
+
+
+.MoveT{
+    animation-timing-function: ease;
+    animation: runLeft 5s infinite;
+}
+
+.MoveB{
+    animation-timing-function: ease;
+    animation: runRight 5s infinite;
+}
+
+@keyframes cat {
+    0% { left: 0%;}
+    20%{ left: 5%;}
+    40% { left: 0%;}
+    60%{ right : 0%;}
+    80%{ right : 5%;}
+    100%{right: 0%; }
+}
+
+@keyframes runLeft {
+    0% { left: 0;}
+    25%{ left: 110%;}
+    25%{ top: 0;}
+    50%{ top : 50%;}
+    50%{ left : 110%;}
+    75%{left: 0; }
+    75%{top: 50%; }
+    100%{ top: 0;}
+}
+
+@keyframes runRight {
+    0% { right: 0;}
+    25%{ right : 100%;}
+    25%{ bottom : 0;}
+    50%{ bottom  : 50%;}
+    50%{ right : 100%;}
+    75%{ right: 0; }
+    75%{ bottom : 50%; }
+    100%{ bottom : 0;}
 }
