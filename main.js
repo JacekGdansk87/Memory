@@ -11,16 +11,16 @@ const tab = [];
 const tabImg = []
 
 NewGame();
-document.getElementById('newGame').addEventListener("click", function() {Game()});
+document.getElementById('newGame').addEventListener("click", ()=> {Game()});
 
 function NewGame(){
 
     //Game level
-    document.getElementById('easy').addEventListener("click", function() { changeLevel(level="easy")});
-    document.getElementById('medium').addEventListener("click", function() { changeLevel( level="medium")});
+    document.getElementById('easy').addEventListener("click", ()=> { changeLevel(level="easy")});
+    document.getElementById('medium').addEventListener("click", ()=> { changeLevel( level="medium")});
     //Game Size
-    document.getElementById('small').addEventListener("click", function() {changeSize(size="small")});
-    document.getElementById('large').addEventListener("click", function() {changeSize(size="large")});
+    document.getElementById('small').addEventListener("click", ()=> {changeSize(size="small")});
+    document.getElementById('large').addEventListener("click", ()=> {changeSize(size="large")});
 }
 
 function Settings(){
@@ -55,9 +55,9 @@ function Game(){
     Settings();
     document.querySelector('.startWindow').style.opacity='0';
     document.querySelector('.cards').style.opacity='1';
-    document.querySelector('.playOption').innerHTML=('<button class="reset off" >Reset</button>');
+    document.querySelector('.playOption').innerHTML=('Level: '+level+'<button class="reset off" >Reset</button>'+'<br>Size : '+size);
 
-    document.querySelector('.reset').addEventListener("click", function() {location.reload();});
+    document.querySelector('.reset').addEventListener("click", ()=> {location.reload();});
     document.querySelector('.settings').innerHTML=('Turn: 0<br>Pairs left:' + pairsLeft);
     shuffleCards(); 
 }
@@ -66,7 +66,7 @@ function shuffleCards() {
 
     while(tab.length !== sizeTab){
         let img = Math.floor(Math.random()*sizeTab+1);
-        let found = tab.find(function(element) { 
+        let found = tab.find((element)=> { 
             return element == img; 
         });
         if(found == undefined){
@@ -82,7 +82,7 @@ function shuffleCards() {
             console.log(id);
             console.log(tabImg[i]);
 
-            choosenCard.addEventListener("click", function() {revealCard(id, tabImg[i])});
+            choosenCard.addEventListener("click", ()=> {revealCard(id, tabImg[i])});
         }
 }
 
@@ -120,9 +120,9 @@ function revealCard(id, imgVis){
             document.querySelector('.settings').innerHTML='Turn: '+ turnCounter + '<br>Pairs left:' + pairsLeft;
 
                 if(imageVisible == imgVis){
-                    setTimeout(function() {restore2Cards(choosenCardSecond)}, 1000);
+                    setTimeout(()=> {restore2Cards(choosenCardSecond)}, 1000);
                 }else{
-                    setTimeout(function() { hide2Cards(choosenCardSecond) }, 1000);
+                    setTimeout(()=> { hide2Cards(choosenCardSecond) }, 1000);
                 }
                 oneVisible = false;
             }

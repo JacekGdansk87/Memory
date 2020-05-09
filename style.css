@@ -5,8 +5,6 @@
 body{
     background-color: rgb(50, 66, 77);
     display: grid;
-    height: 100%;
-    width: 100%;
     margin-top: 10px;
     padding: 0;
     justify-content: center;
@@ -129,12 +127,12 @@ button{
 
 .MoveT{
     animation-timing-function: ease;
-    animation: runLeft 5s infinite;
+    animation: runLeft 10s infinite;
 }
 
 .MoveB{
     animation-timing-function: ease;
-    animation: runRight 5s infinite;
+    animation: runRight 10s infinite;
 }
 
 @keyframes cat {
